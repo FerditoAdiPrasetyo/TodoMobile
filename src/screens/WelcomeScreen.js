@@ -14,9 +14,13 @@ const WelcomeScreen = ({navigation}) => {
         <Image style={styles.illustration} source={require('../assets/pencil.png')} />
         <Text style={styles.subtitle}>Selamat Datang</Text>
         <ActionButton
-        desc='Ayo Simpan Tugas Mu'
-        title='Ayo Masuk'
+        desc='Apa Rencanamu Hari Ini'
+        title='Buat Rencana'
         onPress={() => handleGoTo('TodoScreen')}
+        />
+        <ActionButton
+        title='Todo Beta'
+        onPress={() => handleGoTo('TodoBeta')}
         />
     </View>
   );

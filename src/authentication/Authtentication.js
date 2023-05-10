@@ -1,7 +1,8 @@
 import React from 'react';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import TodoScreen from '../screens/todo/TodoScreen';
-import ForgetScreen from '../screens/ForgetScreen';
+import TodoBeta from '../screens/beta/TodoBeta';
+import Splash from '../screens/splash';
 
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -10,10 +11,11 @@ const Stack = createNativeStackNavigator();
 
 const Authtentication = () => {
   return (
-    <Stack.Navigator initialRouteName="WelcomeScreen">
+    <Stack.Navigator initialRouteName="Splash">
+      <Stack.Screen name="Splash" component={Splash} options={{headerShown: false}}/>
         <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} options={{headerShown: false}}/>
-        <Stack.Screen name="TodoScreen" component={TodoScreen} options={{title: 'Todo List'}}/>
-        <Stack.Screen name="ForgetScreen" component={ForgetScreen}/>
+        <Stack.Screen name="TodoScreen" component={TodoScreen} options={{headerShown: false}}/>
+        <Stack.Screen name="TodoBeta" component={TodoBeta}/>
     </Stack.Navigator>
   );
 };

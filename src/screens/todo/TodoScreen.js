@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, Animated, PanResponder, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -61,25 +61,20 @@ export default function App() {
   };
 
   const renderItem = ({ item }) => (
-    // <View onPress={() => toggleTodo(item.id)}>
+    <View onPress={() => toggleTodo(item.id)}>
       <View style={[styles.todo,{flexDirection: 'row'}]}>
-        <View style={{flex: 1, alignItems: 'center', borderColor: 'red', borderWidth: 2}}>
-          <Text>
-            checkbox
-          </Text>
-        </View>
         <View style={{flex: 4, alignItems: 'center', borderColor: 'red', borderWidth: 2}}>
           <Text style={[styles.todoText, item.completed && styles.completedTodo]}>
             {item.text}
           </Text>
         </View>
-        <View onPress={() => deleteTodo(item.id)} style={{flex: 1, alignItems: 'center', borderColor: 'red', borderWidth: 2}}>
+        <View onPress={() => deleteTodo(item.id)} style={{flex: 1, alignItems: 'center', borderColor: 'red', borderWidth: 2, width: 20, maxHeight: 200}}>
           <TouchableOpacity onPress={() => deleteTodo(item.id)}>
-            <Icon name="trash" size={50} color="#900" />
+            <Icon name="trash" size={30} color="#900" />
           </TouchableOpacity>
         </View>
       </View>
-    // </View>
+    </View>
   );
 
   return (
@@ -96,7 +91,7 @@ export default function App() {
           <Icon name="plus" size={20} color="black" />
         </TouchableOpacity>
       </View>
-      <FlatList style={{backgroundColor: 'white', marginTop: 2, height: 100}} data={todos} renderItem={renderItem} keyExtractor={(item) => item.id} />
+      <FlatList style={{backgroundColor: 'white', marginTop: 2, height: 100, borderColor: 'blue', borderWidth: 2,}} data={todos} renderItem={renderItem} keyExtractor={(item) => item.id} />
     </View>
   );
 }
@@ -129,17 +124,21 @@ const styles = StyleSheet.create({
     color: 'black'
   },
   addButton: {
-    borderColor: 'gray',
+    width: 40,
+    height: 40,
+    backgroundColor: '#FFF',
+    borderRadius: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: '#C0C0C0',
     borderWidth: 1,
-    padding: 10,
-    borderRadius: 44/2,
   },
   addButtonText: {
     color: 'white',
   },
   todo: {
     marginTop: 2,
-    height: 80,
+    maxHeight: 200,
     alignItems: 'center',
     justifyContent: 'center',
     borderColor: 'black', 
